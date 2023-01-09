@@ -7,7 +7,8 @@ export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {
-    path: 'principal', component: PrincipalComponent,
+    path: 'principal',
+    loadChildren: () => import('./components/principal/principal.module').then(m => m.PrincipalModule)
   }
 ];
 

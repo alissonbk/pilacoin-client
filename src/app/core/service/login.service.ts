@@ -24,7 +24,7 @@ export class LoginService extends AbstractService {
         tap(autenticado => {
           if (LoginService.checkLogged(autenticado)) {
             sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify(autenticado));
-            this.router.navigate(['/principal/']);
+            this.router.navigate(['/principal/home']);
           } else {
             Swal.fire('Não permitido', '', 'error');
           }

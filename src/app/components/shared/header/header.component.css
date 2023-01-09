@@ -1,0 +1,19 @@
+
+.navbar-bg {
+  background-color: #090C08;
+}
+
+.nav-item-color {
+  text-align: center;
+  vertical-align: text-bottom;
+  color: white;
+}
+
+.nav-item-color.disabled {
+  color: gray !important;
+}
+
+.activated {
+  color: orange !important;
+}
+
