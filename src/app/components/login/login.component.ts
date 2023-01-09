@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/core/service/login.service';
 import Swal from 'sweetalert2';
 
@@ -14,29 +14,32 @@ export class LoginComponent implements OnInit{
   password: string;
   loading: boolean = false;
   submitted: boolean = false;
-  formLogin: UntypedFormGroup | undefined;
+  formLogin: FormGroup<any>;
 
-  constructor(private fb: UntypedFormBuilder, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
     this.email = '';
     this.password =  '';
-  }
 
-  ngOnInit(): void {
     this.formLogin = this.fb.group({
-      email: this.fb.control(this.email, [Validators.required, Validators.email]),
-      senha: this.fb.control(this.password, [Validators.required])
+      email: this.fb.control(this.email, [Validators.required, Validators.email, Validators.minLength(10)]),
+      password: this.fb.control(this.password, [Validators.required, Validators.minLength(4)])
     });
   }
 
+  ngOnInit(): void {
+    this.formLogin.reset();
+  }
+
   auth() {
+    console.log(this.formLogin);
     this.loading = true;
     this.submitted = true;
 
     if (this.formLogin?.valid) {
-        this.loginService.login(this.formLogin.value.email, this.formLogin.value.senha).subscribe();
+        this.loginService.login(this.formLogin.value.email, this.formLogin.value.password).subscribe();
     } else {
         this.loading = false;
-        //this.inputs.forEach((child) => {child.markErrors()});
+        this.formLogin.reset();
         Swal.fire('Formulário preenchido incorretamente.', '', 'warning');
     }
 }

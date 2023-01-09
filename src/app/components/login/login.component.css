@@ -1,3 +1,21 @@
-input:-webkit-autofill {
+/* input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+} */
+
+.form-style {
+  width: 400px;
+  height: 550px;
+  background-color: #474056;
+  margin-top: 100px;
+  border: 2px solid #8A95A5;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn-color {
+  background-color: #090C08;
+  color: #B9C6AE;
 }
