@@ -1,0 +1,43 @@
+
+.home-container {
+  width: 95vw;
+  height: 85vh;
+  background-image: url('../../../../assets/imagens/lO8d0hR.jpg');
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+}
+
+.wallet {
+  width: 90vw;
+  height: 70vh;
+  /* background-color: aliceblue; */
+}
+
+.pubkey {
+  color: whitesmoke;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.pilacoins {
+  color: whitesmoke;
+  margin-top: -58px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.ml-span {
+  margin-left: 25px;
+}
+
+.mr-span {
+  margin-right: 25px;
+}

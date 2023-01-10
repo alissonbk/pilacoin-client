@@ -4,15 +4,18 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link nav-item-color"
-      [routerLink]="['/principal/home']"
-      [ngClass]="this.activeRoute('home') ? 'activated' : ''">
-        Home
-      </a>
-      <a class="nav-link nav-item-color" [routerLink]="['/principal/home']">Features</a>
+    <div class="navbar-nav p-4">
+
+      <a class="nav-link nav-item-color" [routerLink]="['/principal/home']"
+        [ngClass]="this.activeRoute('home') ? 'activated' : ''"> Home </a>
+      <span class="text-center mt-2"style="color: white; text-align: bottom; cursor: default;">|</span>
+
+      <a class="nav-link nav-item-color" [routerLink]="['/principal/eventos-mineracao']"
+        [ngClass]="this.activeRoute('eventos-mineracao') ? 'activated' : ''">Eventos de Mineracao</a>
+      <span class="text-center mt-2"style="color: white; text-align: bottom; cursor: default;">|</span>
+
       <a class="nav-link nav-item-color" [routerLink]="['/principal/home']">Pricing</a>
-      <a class="nav-link nav-item-color disabled" [routerLink]="['/principal/home']">Disabled</a>
+
     </div>
   </div>
 </nav>

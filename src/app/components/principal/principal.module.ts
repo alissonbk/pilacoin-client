@@ -4,6 +4,7 @@ import { PrincipalComponent } from './principal.component';
 import { HomeComponent } from './home/home.component';
 import { PrincipalRoutingModule } from './principal-routing.module';
 import { HeaderComponent } from '../shared/header/header.component';
+import { EventosMineracaoComponent } from './eventos-mineracao/eventos-mineracao.component';
 
 
 
@@ -11,7 +12,8 @@ import { HeaderComponent } from '../shared/header/header.component';
     declarations: [
         PrincipalComponent,
         HomeComponent,
-        HeaderComponent
+        HeaderComponent,
+        EventosMineracaoComponent
     ],
     imports: [
         CommonModule,
