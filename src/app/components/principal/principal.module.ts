@@ -1,3 +1,4 @@
+import { WebsocketConnector } from './../../core/ws/websocket.connector';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrincipalComponent } from './principal.component';
@@ -13,11 +14,11 @@ import { EventosMineracaoComponent } from './eventos-mineracao/eventos-mineracao
         PrincipalComponent,
         HomeComponent,
         HeaderComponent,
-        EventosMineracaoComponent
+        EventosMineracaoComponent,
     ],
     imports: [
         CommonModule,
-        PrincipalRoutingModule
+        PrincipalRoutingModule,
     ]
 })
 export class PrincipalModule { }
