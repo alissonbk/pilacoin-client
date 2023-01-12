@@ -7,6 +7,7 @@ export class WebsocketConnector {
 
   stompClient: any;
   wsEndPoint:string = environment.apiUrl + '/websocket-handshake';
+  msgSubscribed: any;
 
 
   constructor(
@@ -22,7 +23,7 @@ export class WebsocketConnector {
     const ws = new SockJS(this.wsEndPoint);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect({}, (frame: any) => {
-      this.stompClient.subscribe(this.topic, (event: any) => {
+      this.msgSubscribed = this.stompClient.subscribe(this.topic, (event: any) => {
         this.onMessage(event);
       });
     }, errorCallback.bind(this));
@@ -34,6 +35,11 @@ export class WebsocketConnector {
       console.log("Tentando se conectar novamente...");
       this.connect(this.onError);
     }, 3000);
+  }
+
+  private unsubscribe() {
+    this.msgSubscribed.unsubscribe();
+    this.msgSubscribed = null;
   }
 
 }

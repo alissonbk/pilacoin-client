@@ -9,7 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/security/auth-interceptor';
+import { registerLocaleData } from '@angular/common';
+import localePT from '@angular/common/locales/pt';
 
+registerLocaleData(localePT);
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +29,7 @@ import { AuthInterceptor } from './core/security/auth-interceptor';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    {provide: LOCALE_ID, useValue: "pt"}
+    {provide: LOCALE_ID, useValue: "pt-BR"}
   ],
   bootstrap: [AppComponent],
 })

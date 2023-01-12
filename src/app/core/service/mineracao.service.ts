@@ -14,7 +14,7 @@ export class MineracaoService extends AbstractService {
     super(http);
   }
 
-  startStopLoop(): Observable<void> {
+  startStopLoop(): Observable<any> {
     return this.http.post<any>(`${this.URL}/startStopLoop`, {});
   }
 }

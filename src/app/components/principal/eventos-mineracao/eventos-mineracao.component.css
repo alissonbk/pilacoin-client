@@ -1,0 +1,32 @@
+.terminal {
+  min-width: 1500px;
+  min-height: 520px;
+  border-radius: 10px;
+  background-color: #090C08;
+  display: flex;
+  align-items: start;
+  justify-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.terminal-text {
+  color: #00FF41;
+  display: block;
+  margin-left: 25px;
+}
+
+.clear-btn {
+  display: flex;
+  align-self: end;
+  color:red;
+  cursor: pointer;
+}
+
+.btn-event {
+  height: 50px;
+  width: 300px;
+  background-color: #FFFDD0;
+}
