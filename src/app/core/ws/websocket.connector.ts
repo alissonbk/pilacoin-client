@@ -6,7 +6,7 @@ import * as Stomp from 'stompjs';
 export class WebsocketConnector {
 
   stompClient: any;
-  wsEndPoint:string = environment.apiUrl + '/ws';
+  wsEndPoint:string = environment.apiUrl + '/websocket-handshake';
 
 
   constructor(

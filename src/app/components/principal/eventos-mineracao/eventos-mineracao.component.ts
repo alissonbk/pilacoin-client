@@ -1,3 +1,4 @@
+import { MineracaoPilaDTO } from './../../../core/dto/mineracao-pila.dto';
 import { WebsocketConnector } from './../../../core/ws/websocket.connector';
 import { Component } from '@angular/core';
 import { MineracaoService } from 'src/app/core/service/mineracao.service';
@@ -10,7 +11,7 @@ import { MineracaoService } from 'src/app/core/service/mineracao.service';
 export class EventosMineracaoComponent {
 
   wsConnector: any;
-  items: any[] = [];
+  items: MineracaoPilaDTO[] = [];
   constructor(
     private mineracaoService: MineracaoService) {
     }
@@ -21,11 +22,12 @@ export class EventosMineracaoComponent {
   }
 
   subscribeEvents() {
-    this.wsConnector = new WebsocketConnector('/mineracaoPila', this.onMessage.bind(this));
+    this.wsConnector = new WebsocketConnector('/topic/mineracaoPila', this.onMessage.bind(this));
   }
 
   onMessage(message: any) {
-    console.log(message);
-    this.items.push(message.body);
+    let msg = JSON.parse(message.body).content;
+    this.items.push(JSON.parse(msg));
+    console.log(this.items);
   }
 }
