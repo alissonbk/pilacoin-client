@@ -7,6 +7,7 @@ import { PrincipalRoutingModule } from './principal-routing.module';
 import { HeaderComponent } from '../shared/header/header.component';
 import { EventosMineracaoComponent } from './eventos-mineracao/eventos-mineracao.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EventosValidacaoComponent } from './eventos-validacao/eventos-validacao.component';
 
 
 
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         HomeComponent,
         HeaderComponent,
         EventosMineracaoComponent,
+        EventosValidacaoComponent,
     ],
     imports: [
         CommonModule,

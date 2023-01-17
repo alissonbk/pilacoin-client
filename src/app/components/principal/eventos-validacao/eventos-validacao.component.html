@@ -1,11 +1,11 @@
 <div class="container row d-flex justify-content-center">
-  <button class="row btn btn-event" (click)="startMineracao()" *ngIf="!this.minerando">
+  <button class="row btn btn-event" (click)="startListen()" *ngIf="!this.ouvindoEventos">
     <fa-icon [icon]="faStart" size="xl" [style]="{ color: 'green' }"></fa-icon>
-    <span style="margin-bottom: 20px;">Iniciar Mineração</span>
+    <span style="margin-bottom: 20px;">Observar Validações</span>
   </button>
-  <button class="row btn btn-event" (click)="stopMineracao()" *ngIf="this.minerando">
+  <button class="row btn btn-event" (click)="stopListen()" *ngIf="this.ouvindoEventos">
     <fa-icon [icon]="faStop" size="xl" [style]="{ color: 'red' }"></fa-icon>
-    <span style="margin-bottom: 20px;">Parar Mineração</span>
+    <span style="margin-bottom: 20px;">Parar de Observar</span>
   </button>
   <button class="row btn btn-event p-2" *ngIf="this.loading">
     <div class="spinner-border" role="status">
@@ -15,7 +15,7 @@
   <div class="terminal" *ngIf="this.items">
     <fa-icon [icon]="faTrash" class="clear-btn" size="2x" (click)="clearList();"></fa-icon>
     <span class="terminal-text row mt-2" *ngFor="let i of this.items">
-      minerado@Pila:~# data: {{ this.i.dataCriacao | date : 'dd-MM-yyyy HH:mm:ss' }} | nonce: {{ this.i.nonce }}</span> <br/>
+      validacao@Pila:~# data: {{ this.i.dataAcao | date : 'dd-MM-yyyy HH:mm:ss' }} | nonce: {{ this.i.nonce }}</span> <br/>
   </div>
 </div>
 
