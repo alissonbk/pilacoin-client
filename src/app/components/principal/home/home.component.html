@@ -1,15 +1,16 @@
 <div class="home-container">
-  <div class="wallet">
-
-    <div class="pubkey text-color">
-      <h4>Chave Pública para transferência:</h4>
-      <span class="ml-span">&emsp;pubkey...</span>
-    </div>
-
-    <div class="pilacoins mr-span">
-      <h4>Pilacoins na carteira:</h4>
-      <span class="mr-span">numPilas...</span>
-    </div>
-
+  <fa-icon [icon]="faWallet" size="3x" class="faWallet"></fa-icon>
+  <div class="pilacoins">
+    <span>TOTAL DE PILA COINS</span>
+    <h3><fa-icon [icon]="faCoins"></fa-icon><span>numPilas...</span></h3>
   </div>
+
+  <div class="pubkey">
+    <span>CHAVE PUBLICA PARA TRANSFERÊNCIA</span>
+    <h3>{{ this.usuario.chavePublica }}
+      <fa-icon [icon]="faCopy" class="faCopy" (click)="this.copyClipboard(this.usuario.chavePublica)"></fa-icon>
+    </h3>
+  </div>
+
+
 </div>
