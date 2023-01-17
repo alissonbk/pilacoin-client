@@ -1,9 +1,10 @@
+import { NumPilasDTO } from './../../../core/dto/num-pilas.dto';
+import { TransacaoService } from './../../../core/service/transacao.service';
 import { Usuario } from './../../../core/model/usuario.model';
 import { LoginService } from './../../../core/service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { faCoins, faCopy, faWallet } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
-import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,9 @@ export class HomeComponent implements OnInit {
   faCopy = faCopy;
   toast: any;
   usuario: Usuario = new Usuario();
+  saldo!: number;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private transacaoService: TransacaoService) {
     this.toast = Swal.mixin({
       toast: true,
       position: 'top-right',
@@ -34,6 +36,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
       this.loginService.loggedUser != null ? this.usuario = this.loginService.loggedUser : '';
+      this.transacaoService.getPilas().subscribe(numPilas => {
+        this.saldo = numPilas.valor;
+      })
   }
 
   copyClipboard(value: string) {
