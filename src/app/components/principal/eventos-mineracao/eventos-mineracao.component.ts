@@ -1,6 +1,6 @@
 import { MineracaoPilaDTO } from './../../../core/dto/mineracao-pila.dto';
 import { WebsocketConnector } from './../../../core/ws/websocket.connector';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MineracaoService } from 'src/app/core/service/mineracao.service';
 import { faTrash, faArrowRightLong, faStop } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,26 +9,31 @@ import { faTrash, faArrowRightLong, faStop } from '@fortawesome/free-solid-svg-i
   templateUrl: './eventos-mineracao.component.html',
   styleUrls: ['./eventos-mineracao.component.css']
 })
-export class EventosMineracaoComponent {
+export class EventosMineracaoComponent implements OnInit {
 
   faTrash = faTrash;
   faStart = faArrowRightLong;
   faStop = faStop;
-  wsConnector: any;
   items: MineracaoPilaDTO[] = [];
   loading: boolean = false;
   minerando: boolean = false;
 
   constructor(
-    private mineracaoService: MineracaoService) {
+    private mineracaoService: MineracaoService,
+    private websocketConnector: WebsocketConnector) {
     }
 
+  ngOnInit(): void {
+    this.items = this.websocketConnector.mineracaoItems;
+    this.minerando = this.websocketConnector.statusMineracao;
+  }
 
   startMineracao() {
     this.mineracaoService.startStopLoop().subscribe(
       () => {
         try {
-          this.subscribeEvents();
+          this.websocketConnector
+            .startConnectionProccess('/topic/mineracaoPila', this.onMessageCallback.bind(this));
           this.minerando = true;
         } catch (e) {
           console.log(e);
@@ -44,7 +49,7 @@ export class EventosMineracaoComponent {
     this.mineracaoService.startStopLoop().subscribe(
       () => {
         try {
-          this.unsubscribeEvents();
+          this.websocketConnector.unsubscribe('/topic/mineracaoPila');
           this.minerando = false;
         } catch (e) {
           console.log(e);
@@ -56,22 +61,14 @@ export class EventosMineracaoComponent {
       });
   }
 
-  subscribeEvents() {
-    this.wsConnector = new WebsocketConnector('/topic/mineracaoPila', this.onMessage.bind(this));
+
+
+  onMessageCallback(message: any) {
+    this.items = this.websocketConnector.mineracaoItems;
   }
 
-  unsubscribeEvents() {
-    if (this.wsConnector != null) {
-      this.wsConnector.unsubscribe();
-    }
-
+  clearList() {
+    this.websocketConnector.clearMineracaoList();
+    this.items = this.websocketConnector.mineracaoItems;
   }
-
-  onMessage(message: any) {
-    let msg = JSON.parse(message.body).content;
-    this.items.push(JSON.parse(msg));
-    console.log(this.items);
-  }
-
-  clearList() { this.items = []; }
 }

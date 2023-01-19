@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faArrowRightLong, faStop, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ValidacaoPilaDTO } from 'src/app/core/dto/validacao-pila-dto';
 import { WebsocketConnector } from 'src/app/core/ws/websocket.connector';
@@ -8,20 +8,26 @@ import { WebsocketConnector } from 'src/app/core/ws/websocket.connector';
   templateUrl: './eventos-validacao.component.html',
   styleUrls: ['./eventos-validacao.component.css']
 })
-export class EventosValidacaoComponent {
+export class EventosValidacaoComponent implements OnInit {
   faTrash = faTrash;
   faStart = faArrowRightLong;
   faStop = faStop;
-  wsConnector: any;
 
   items: ValidacaoPilaDTO[] = [];
   loading: boolean = false;
   ouvindoEventos: boolean = false;
 
+  constructor(private websocketConnector: WebsocketConnector) { }
+
+  ngOnInit(): void {
+      this.items = this.websocketConnector.validacaoItems;
+      this.ouvindoEventos = this.websocketConnector.statusValidacao;
+  }
 
   startListen() {
     try {
-      this.subscribeEvents();
+      this.websocketConnector
+        .startConnectionProccess('/topic/validacaoPilaBloco', this.onMessageCallback.bind(this));
       this.ouvindoEventos = true;
     } catch (e) {
       console.log(e);
@@ -31,7 +37,7 @@ export class EventosValidacaoComponent {
 
   stopListen() {
     try {
-      this.unsubscribeEvents();
+      this.websocketConnector.unsubscribe('/topic/validacaoPilaBloco');
       this.ouvindoEventos = false;
     } catch (e) {
       console.log(e);
@@ -39,24 +45,15 @@ export class EventosValidacaoComponent {
     }
   }
 
-  subscribeEvents() {
-    this.wsConnector = new WebsocketConnector('/topic/validacaoPilaBloco', this.onMessage.bind(this));
+
+  onMessageCallback(message: any) {
+    this.items = this.websocketConnector.validacaoItems;
   }
 
-  unsubscribeEvents() {
-    if (this.wsConnector != null) {
-      this.wsConnector.unsubscribe();
-    }
-
+  clearList() {
+    this.websocketConnector.clearValidacaoList();
+    this.items = this.websocketConnector.validacaoItems;
   }
-
-  onMessage(message: any) {
-    let msg = JSON.parse(message.body).content;
-    this.items.push(JSON.parse(msg));
-    console.log(this.items);
-  }
-
-  clearList() { this.items = []; }
 
 
 }

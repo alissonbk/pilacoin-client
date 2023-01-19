@@ -1,4 +1,3 @@
-import { WebsocketConnector } from './../../core/ws/websocket.connector';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrincipalComponent } from './principal.component';
