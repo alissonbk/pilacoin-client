@@ -14,7 +14,12 @@
         [ngClass]="this.activeRoute('eventos-mineracao') ? 'activated' : ''">Eventos de Mineracao</a>
       <span class="text-center mt-2"style="color: white; text-align: bottom; cursor: default;">|</span>
 
-      <a class="nav-link nav-item-color" [routerLink]="['/principal/eventos-validacao']">Eventos de Validação</a>
+      <a class="nav-link nav-item-color" [routerLink]="['/principal/eventos-validacao']"
+      [ngClass]="this.activeRoute('eventos-validacao') ? 'activated' : ''">Eventos de Validação</a>
+      <span class="text-center mt-2"style="color: white; text-align: bottom; cursor: default;">|</span>
+
+      <a class="nav-link nav-item-color" [routerLink]="['/principal/transferencia']"
+      [ngClass]="this.activeRoute('transferencia') ? 'activated' : ''">Transferência</a>
 
     </div>
   </div>

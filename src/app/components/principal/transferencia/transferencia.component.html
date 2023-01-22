@@ -1,0 +1,17 @@
+<div class="transferencia-container">
+  <fa-icon [icon]="faTransfer" size="3x" class="faTransfer"></fa-icon>
+
+  <h4 class="transferencia-title">Transferir Pilacoin</h4>
+
+  <div class="form-group" class="mt-5">
+    <label for="textarea" style="color: white;">Digite a Chave Publica para transferencia:</label>
+    <textarea class="form-control mt-3" id="textarea" [(ngModel)]="chave" rows="4"></textarea>
+  </div>
+  <div class="d-flex justify-content-around flex-row">
+    <button class="btn btn-primary mt-4" (click)="validarChave()">Validar Chave</button>
+    <button class="btn btn-success mt-4" (click)="transferir()">Fazer Transferencia</button>
+  </div>
+
+
+
+</div>

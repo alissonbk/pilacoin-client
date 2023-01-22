@@ -64,6 +64,8 @@ export class WebsocketConnector {
   }
 
   private onError(error: any) {
+    this.statusMineracao = false;
+    this.statusValidacao = false;
     Swal.fire('Ops', 'Erro ao se inscrever no topico' + this.topic, 'error');
   }
 

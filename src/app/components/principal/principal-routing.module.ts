@@ -1,3 +1,4 @@
+import { TransferenciaComponent } from './transferencia/transferencia.component';
 import { EventosValidacaoComponent } from './eventos-validacao/eventos-validacao.component';
 import { PrincipalComponent } from './principal.component';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,8 @@ export const routes: Routes = [
   {path: '', component: PrincipalComponent, children: [
     { path: 'home', component: HomeComponent },
     { path: 'eventos-mineracao', component: EventosMineracaoComponent },
-    { path: 'eventos-validacao', component: EventosValidacaoComponent }
+    { path: 'eventos-validacao', component: EventosValidacaoComponent },
+    { path: 'transferencia', component: TransferenciaComponent }
   ]},
 
 ];
