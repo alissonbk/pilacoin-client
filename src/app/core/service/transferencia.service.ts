@@ -1,5 +1,5 @@
-import { ChaveDTO } from './../dto/chave.dto';
-import { NumPilasDTO } from './../dto/num-pilas.dto';
+import { GenericResponseDTO } from './../dto/generic-response.dto';
+
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -16,11 +16,11 @@ export class TransferenciaService extends AbstractService {
     super(http);
   }
 
-  validarChave(chave: ChaveDTO): Observable<any> {
+  validarChave(chave: GenericResponseDTO<string>): Observable<any> {
     return this.http.post(`${this.URL}/validarChave`, chave,  { responseType: 'text' });
   }
 
-  transferir(chave: ChaveDTO): Observable<any> {
+  transferir(chave: GenericResponseDTO<string>): Observable<any> {
     return this.http.post(`${this.URL}/transferir`, chave, { responseType: 'text'});
   }
 

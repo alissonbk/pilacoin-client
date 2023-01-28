@@ -14,7 +14,6 @@ export class AbstractService {
         this.http = http;
         this.headers = new HttpHeaders();
         this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Accept', 'text/plain; charset=utf-8');
 
     }
 

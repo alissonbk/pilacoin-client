@@ -1,4 +1,4 @@
-import { NumPilasDTO } from './../dto/num-pilas.dto';
+import { GenericResponseDTO } from './../dto/generic-response.dto';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +15,11 @@ export class TransacaoService extends AbstractService {
     super(http);
   }
 
-  getPilas(): Observable<NumPilasDTO> {
-    return this.http.get<NumPilasDTO>(`${this.URL}/get-pilas`, {});
+  getPilas(): Observable<GenericResponseDTO<number>> {
+    return this.http.get<GenericResponseDTO<number>>(`${this.URL}/get-pilas`, {});
+  }
+
+  getPilasTransferiveis(): Observable<GenericResponseDTO<number>> {
+    return this.http.get<GenericResponseDTO<number>>(`${this.URL}/get-pilas-transferiveis`, {});
   }
 }

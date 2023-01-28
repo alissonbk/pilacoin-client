@@ -1,9 +1,8 @@
-import { NumPilasDTO } from './../../../core/dto/num-pilas.dto';
 import { TransacaoService } from './../../../core/service/transacao.service';
 import { Usuario } from './../../../core/model/usuario.model';
 import { LoginService } from './../../../core/service/login.service';
 import { Component, OnInit } from '@angular/core';
-import { faCoins, faCopy, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { faAnchor, faAward, faCoins, faCopy, faTruckPickup, faWallet } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,9 +15,11 @@ export class HomeComponent implements OnInit {
   faCoins = faCoins;
   faWallet = faWallet;
   faCopy = faCopy;
+  faPickaxe = faAward;
   toast: any;
   usuario: Usuario = new Usuario();
-  saldo!: number;
+  pilasMinerados!: number;
+  pilasTransferiveis!: number;
 
   constructor(private loginService: LoginService, private transacaoService: TransacaoService) {
     this.toast = Swal.mixin({
@@ -36,9 +37,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
       this.loginService.loggedUser != null ? this.usuario = this.loginService.loggedUser : '';
-      this.transacaoService.getPilas().subscribe(numPilas => {
-        this.saldo = numPilas.valor;
-      })
+
+      this.transacaoService.getPilas().subscribe(resp => {
+        this.pilasMinerados = resp.valor;
+      });
+
+      this.transacaoService.getPilasTransferiveis().subscribe( resp => {
+        this.pilasTransferiveis = resp.valor;
+      });
+
   }
 
   copyClipboard(value: string) {

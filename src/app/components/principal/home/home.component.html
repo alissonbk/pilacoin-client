@@ -1,9 +1,17 @@
 <div class="home-container">
   <fa-icon [icon]="faWallet" size="3x" class="faWallet"></fa-icon>
   <div class="pilacoins">
-    <span>TOTAL DE PILA COINS</span>
-    <h3><fa-icon [icon]="faCoins"></fa-icon><span>{{ this.saldo }}</span></h3>
+    <div class="minerados">
+      <span>PILACOINS <br> MINERADOS</span>
+      <h3><fa-icon [icon]="faPickaxe"></fa-icon><span>{{ this.pilasMinerados }}</span></h3>
+    </div>
+    <div class="transferiveis">
+      <span>PILACOINS <br> TRANSFERÍVEIS</span>
+      <h3><fa-icon [icon]="faCoins"></fa-icon><span>{{ this.pilasTransferiveis }}</span></h3>
+    </div>
   </div>
+
+
 
   <div class="pubkey">
     <span>CHAVE PUBLICA PARA TRANSFERÊNCIA</span>

@@ -1,7 +1,7 @@
-import { ChaveDTO } from './../../../core/dto/chave.dto';
+import { GenericResponseDTO } from './../../../core/dto/generic-response.dto';
+
 import { TransferenciaService } from './../../../core/service/transferencia.service';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
@@ -13,16 +13,16 @@ import Swal from 'sweetalert2';
 export class TransferenciaComponent {
   faTransfer = faMoneyBillTransfer;
   chave!: any;
-  chaveDTO: ChaveDTO = new ChaveDTO();
+  responseDTO: GenericResponseDTO<string> = new GenericResponseDTO<string>();
   chaveValidada: boolean = false;
 
   constructor(private transferenciaService: TransferenciaService) { }
 
   validarChave() {
     console.log(this.chave);
-    this.chaveDTO.value = this.chave;
+    this.responseDTO.valor = this.chave;
 
-    this.transferenciaService.validarChave(this.chaveDTO).subscribe(
+    this.transferenciaService.validarChave(this.responseDTO).subscribe(
       value => {
         Swal.fire('A chave foi validada!', value, 'success');
         this.chaveValidada = true;
@@ -38,12 +38,12 @@ export class TransferenciaComponent {
       Swal.fire('Atenção', 'é necessário validar a chave antes!', 'warning');
       return;
     } else {
-      this.transferenciaService.transferir(this.chave).subscribe(
+      this.transferenciaService.transferir(this.responseDTO).subscribe(
         success => {
-          console.log(success);
+          Swal.fire('Sucesso', 'Transferencia realizada com sucesso', 'success');
         },
         err => {
-          console.log(err);
+          Swal.fire('Erro', JSON.parse(err.error).valor, 'error');
         }
       )
     }
