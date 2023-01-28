@@ -1,5 +1,5 @@
 import { ValidacaoPilaDTO } from 'src/app/core/dto/validacao-pila-dto';
-import { MineracaoPilaDTO } from './../dto/mineracao-pila.dto';
+import { MineracaoPilaDTO } from '../dto/mineracao-pila.dto';
 import { Inject, Injectable } from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root',
 })
-export class WebsocketConnector {
+export class WebsocketConnectorService {
 
   stompClient: any;
   wsEndPoint:string = environment.apiUrl + '/websocket-handshake';
@@ -63,7 +63,7 @@ export class WebsocketConnector {
     }, this.onError.bind(this));
   }
 
-  private onError(error: any) {
+  private onError() {
     this.statusMineracao = false;
     this.statusValidacao = false;
     Swal.fire('Ops', 'Erro ao se inscrever no topico' + this.topic, 'error');

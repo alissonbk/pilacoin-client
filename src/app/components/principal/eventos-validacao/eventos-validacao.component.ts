@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faArrowRightLong, faStop, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ValidacaoPilaDTO } from 'src/app/core/dto/validacao-pila-dto';
-import { WebsocketConnector } from 'src/app/core/ws/websocket.connector';
+import { WebsocketConnectorService } from 'src/app/core/service/websocket-connector.service';
 
 @Component({
   selector: 'app-eventos-validacao',
@@ -17,7 +17,7 @@ export class EventosValidacaoComponent implements OnInit {
   loading: boolean = false;
   ouvindoEventos: boolean = false;
 
-  constructor(private websocketConnector: WebsocketConnector) { }
+  constructor(private websocketConnector: WebsocketConnectorService) { }
 
   ngOnInit(): void {
       this.items = this.websocketConnector.validacaoItems;

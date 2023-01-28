@@ -1,5 +1,5 @@
 import { MineracaoPilaDTO } from './../../../core/dto/mineracao-pila.dto';
-import { WebsocketConnector } from './../../../core/ws/websocket.connector';
+import { WebsocketConnectorService } from '../../../core/service/websocket-connector.service';
 import { Component, OnInit } from '@angular/core';
 import { MineracaoService } from 'src/app/core/service/mineracao.service';
 import { faTrash, faArrowRightLong, faStop } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +20,7 @@ export class EventosMineracaoComponent implements OnInit {
 
   constructor(
     private mineracaoService: MineracaoService,
-    private websocketConnector: WebsocketConnector) {
+    private websocketConnector: WebsocketConnectorService) {
     }
 
   ngOnInit(): void {
