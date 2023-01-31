@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TransacaoService extends AbstractService {
-  URL = environment.apiUrl + "/transacao";
+  URL = environment.apiUrl + "/v1/transacao";
 
   constructor(http: HttpClient) {
     super(http);

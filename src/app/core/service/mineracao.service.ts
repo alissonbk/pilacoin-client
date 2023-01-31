@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MineracaoService extends AbstractService {
-  URL = environment.apiUrl + "/mineracao";
+  URL = environment.apiUrl + "/v1/mineracao";
 
   constructor(http: HttpClient) {
     super(http);

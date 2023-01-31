@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TransferenciaService extends AbstractService {
-  URL = environment.apiUrl + "/transferencia";
+  URL = environment.apiUrl + "/v1/transferencia";
 
   constructor(http: HttpClient) {
     super(http);
